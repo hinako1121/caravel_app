@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,23 +19,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 Route::get('post/create',[PostController::class,'create'])
-->middleware('auth','admin');
-=======
-Route::get('post/create',[PostController::class,'create']);
->>>>>>> parent of f9b0901 (5/19)
-=======
-Route::get('post/create',[PostController::class,'create']);
->>>>>>> parent of f9b0901 (5/19)
-=======
-Route::get('post/create',[PostController::class,'create'])
-->middleware('auth','admin');
->>>>>>> 560a188759879317f0cc7d7be7ea38b738485fd3
+->middleware([AdminMiddleware::class]);
 
 Route::post('post',[PostController::class,'store'])
+->middleware([AdminMiddleware::class])
 ->name('post.store');
+
+Route::get('post',[PostController::class,'index']);
 
 require __DIR__.'/auth.php';
