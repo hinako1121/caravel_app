@@ -19,8 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //Route::middleware('admin', RoleMiddleware::class);
-
-        //parent::boot();
+        //
     }
 }
