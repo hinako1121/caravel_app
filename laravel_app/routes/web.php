@@ -18,7 +18,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+Route::get('post/create',[PostController::class,'create'])
+->middleware('auth','admin');
+=======
 Route::get('post/create',[PostController::class,'create']);
+>>>>>>> parent of f9b0901 (5/19)
+=======
+Route::get('post/create',[PostController::class,'create']);
+>>>>>>> parent of f9b0901 (5/19)
+=======
+Route::get('post/create',[PostController::class,'create'])
+->middleware('auth','admin');
+>>>>>>> 560a188759879317f0cc7d7be7ea38b738485fd3
 
 Route::post('post',[PostController::class,'store'])
 ->name('post.store');

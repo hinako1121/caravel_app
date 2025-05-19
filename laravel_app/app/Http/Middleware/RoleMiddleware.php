@@ -21,4 +21,3 @@ class RoleMiddleware
         return redirect()->route('dashboard');
     }
 }
-
