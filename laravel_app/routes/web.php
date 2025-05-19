@@ -20,10 +20,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('post/create',[PostController::class,'create'])
-->middleware([AdminMiddleware::class]);
+->middleware(['auth', AdminMiddleware::class]);
 
 Route::post('post',[PostController::class,'store'])
-->middleware([AdminMiddleware::class])
+->middleware(['auth', AdminMiddleware::class])
 ->name('post.store');
 
 Route::get('post',[PostController::class,'index']);
