@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Routing\Controller as BaseController;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     public function index()
     {
-        $posts = Post::latest()->get();
+        //$posts = Post::latest()->get();
+        $posts = Post::paginate(10);
         return view('post.index', compact('posts'));
     }
 
@@ -23,14 +25,12 @@ class PostController extends Controller
             'body' => 'required|max:400',
         ]);
 
-        Post::create([
-            'title' => $request->title,
-            'body' => $request->body
-        ]);
+        $validated['user_id'] = auth()->id();
 
-        $request->session()->flash('message','保存しました');
+        Post::create($validated);
 
-        return back();
+        return redirect()->route('post.index')
+            ->with('message', '保存しました');
     }
 
     public function show(Post $post) {

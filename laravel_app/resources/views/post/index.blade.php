@@ -30,5 +30,10 @@
       </div>
     </div>
     @endforeach
+    <div class="mb-4">
+      @if($posts instanceof \Illuminate\Pagination\LengthAwarePaginator)
+        {{ $posts->links() }}
+      @endif
+    </div>
   </div>
 </x-app-layout>
